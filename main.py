@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+
 @dataclass
 class CartItem:
     name: str
@@ -43,10 +44,14 @@ class CartItem:
 def create_cart_items() -> list[CartItem]:
     cart_items: list[CartItem]
     cart_items = [CartItem('bread', 'Wic Eligible Food', 3.99, 'ma', 2),
-                  CartItem('milk', 'Wic Eligible Food', 4.79, 'ma', 1),
+                  CartItem('milk', 'Wic Eligible Food', 4.79, 'nh', 1),
                   CartItem('eggs', 'Wic Eligible Food', 2.89, 'me', 1),
-                  CartItem('jeans', 'clothing', 29.99, 'ma', 1),
-                  CartItem('hoodie', 'clothing', 79.99, 'ma', 2)]
+                  CartItem('jeans', 'clothing', 29.99, 'nh', 1),
+                  CartItem('hoodie', 'clothing', 79.99, 'ma', 3),
+                  CartItem('t-shirt', 'clothing', 22.49, 'me', 3),
+                  CartItem('video game', 'everything else', 59.99, 'ma', 1),
+                  CartItem('fishing rod', 'everything else', 99.99, 'me', 1),
+                  CartItem('cell phone', 'everything else', 599.99, 'nh', 1)]
     return cart_items
 
 
@@ -65,5 +70,3 @@ def cart_total(cart_items: list[CartItem]) -> float:
 if __name__ == '__main__':
     cart = create_cart_items()
     print(cart_total(cart))
-
-
