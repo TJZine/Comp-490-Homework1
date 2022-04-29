@@ -12,8 +12,10 @@ def create_food_list():
 
 def test_total_cost_food():
     cart = create_food_list()
-    total = checkout.cart_total(cart, 'MA')
-    assert total == 11.77
+    total_ma = checkout.cart_total(cart, 'MA')
+    total_me = checkout.cart_total(cart, 'ME')
+    total_nh = checkout.cart_total(cart, 'NH')
+    assert (total_ma and total_me and total_nh) == 11.77
 
 
 def create_clothing_list():
@@ -72,11 +74,20 @@ def test_bad_input_total_cost():
     with pytest.raises(ValueError):
         total3 = checkout.cart_total(cart_negative, 'nh')
 
-# TODO: "empty cart test"
+
+def create_empty_list():
+    cart_items: list[checkout.CartItem]
+    cart_items = []
+    return cart_items
 
 
-# TODO: "make sure there are happy path tests for each state, and each item type"
+def test_empty_cart():
+    cart = create_empty_list()
+    total = checkout.cart_total(cart, 'ma')
+    assert total == 0
 
 
-# TODO: "unsupported state input test"
-
+def test_unsupported_state():
+    cart = create_misc_list()
+    with pytest.raises(ValueError):
+        total = checkout.cart_total(cart, 'CA')
